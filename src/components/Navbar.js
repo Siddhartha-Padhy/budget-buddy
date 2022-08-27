@@ -3,15 +3,15 @@ import React from 'react'
 
 export default function Navbar({ active }) {
   return (
-    <nav class="navbar navbar-dark bg-dark px-2">
-      <span class="navbar-brand mb-0 h1 me-auto text-success">
+    <nav className="navbar navbar-dark bg-dark px-2">
+      <span className="navbar-brand mb-0 h1 me-auto text-success">
         Budget Buddy
       </span>
       <a href="/" className="nav-link text-white">
-        <i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home
+        <i className="fa fa-home" aria-hidden="true"></i>&nbsp;Home
       </a>
       <a href="/" className="nav-link text-white">
-        <i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Stocks
+        <i className="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Stocks
       </a>
     </nav>
   )

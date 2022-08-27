@@ -6,18 +6,18 @@ export default function HomePage() {
     <div className="p-4">
       <div className="row">
         <div className="col-sm-6">
-          <Card title={'Card Bills'} amount={4000} limit={10000} />
+          <Card title={'Card Bills'} amount={8000} limit={20000} id={0} />
         </div>
         <div className="col-sm-6">
-          <Card title={'Medical Bills'} amount={2000} limit={10000} />
+          <Card title={'Medical Bills'} amount={5500} limit={10000} id={1} />
         </div>
       </div>
       <div className="row">
         <div className="col-sm-6">
-          <Card title={'Shopping'} amount={3000} limit={10000} />
+          <Card title={'Shopping'} amount={8000} limit={10000} id={2} />
         </div>
         <div className="col-sm-6">
-          <Card title={'Unexpected'} amount={800} limit={1000} />
+          <Card title={'Unexpected'} amount={1200} limit={5000} id={3} />
         </div>
       </div>
     </div>
