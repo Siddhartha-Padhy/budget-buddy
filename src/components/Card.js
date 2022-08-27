@@ -1,4 +1,5 @@
 import React from 'react'
+import { currency_formatter } from '../utility'
 
 export default function Card({ title, amount, limit }) {
   return (
@@ -7,7 +8,8 @@ export default function Card({ title, amount, limit }) {
         <div className="d-flex">
           <h5 class="card-title me-auto my-auto">{title}</h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            {amount}/{limit}
+            {currency_formatter.format(amount)} /&nbsp;
+            {currency_formatter.format(limit)}
           </h6>
         </div>
 
