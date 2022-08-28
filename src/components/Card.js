@@ -1,6 +1,7 @@
 import React from 'react'
 import { currency_formatter } from '../utility'
 import Modal from './Modal'
+import ViewModal from './ViewModal'
 
 export default function Card({ title, amount, limit, id }) {
   function get_color(amount, limit) {
@@ -43,11 +44,18 @@ export default function Card({ title, amount, limit, id }) {
           >
             Add Expense
           </button>
-          <button className="btn btn-outline-primary m-1">View Expenses</button>
+          <button
+            className="btn btn-outline-primary m-1"
+            data-toggle="modal"
+            data-target={'#viewModal' + id}
+          >
+            View Expenses
+          </button>
         </div>
       </div>
 
       <Modal id={id} title={title} />
+      <ViewModal id={id} title={title} />
     </>
   )
 }

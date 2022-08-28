@@ -1,4 +1,5 @@
 import React from 'react'
+import { add_expense } from '../utility'
 
 export default function Modal({ id, title }) {
   return (
@@ -13,9 +14,7 @@ export default function Modal({ id, title }) {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              {title}
-            </h5>
+            <h5 className="modal-title">{title}</h5>
             <button
               type="button"
               className="close"
@@ -32,8 +31,8 @@ export default function Modal({ id, title }) {
                 <label htmlFor="exampleInputEmail1">Caption</label>
                 <input
                   type="text"
-                  className="form-control"
-                  id="caption"
+                  className="form-control caption"
+                  id={'caption' + id}
                   placeholder="Caption"
                 />
               </div>
@@ -41,8 +40,8 @@ export default function Modal({ id, title }) {
                 <label htmlFor="amount">Amount</label>
                 <input
                   type="number"
-                  className="form-control"
-                  id="amount"
+                  className="form-control amount"
+                  id={'amount' + id}
                   placeholder="0"
                 />
               </div>
@@ -50,7 +49,12 @@ export default function Modal({ id, title }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              id="add_exp"
+              className="btn btn-primary"
+              onClick={() => add_expense(title, id)}
+            >
               Add
             </button>
           </div>

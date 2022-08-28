@@ -1,7 +1,17 @@
 import React from 'react'
 import Card from '../components/Card'
+// import React, { useEffect, useState } from 'react'
 
 export default function HomePage() {
+  // const [cardBill, setCardBill] = useState(0)
+  // const [medBill, setMedBill] = useState(0)
+  // const [shop, setShop] = useState(0)
+  // const [unexp, setUnexp] = useState(0)
+
+  // useEffect(() => {
+  //   setCardBill(get_stats('Card'))
+  // }, [])
+
   return (
     <div className="p-4">
       <div className="row">
