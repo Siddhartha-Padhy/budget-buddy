@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Navbar({ active }) {
   return (
@@ -7,12 +7,22 @@ export default function Navbar({ active }) {
       <span className="navbar-brand mb-0 h1 me-auto text-success">
         Budget Buddy
       </span>
-      <a href="/" className="nav-link text-white">
+      <Link
+        className={
+          active === 'home' ? 'nav-link text-success' : 'nav-link text-white'
+        }
+        to="/"
+      >
         <i className="fa fa-home" aria-hidden="true"></i>&nbsp;Home
-      </a>
-      <a href="/" className="nav-link text-white">
-        <i className="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Stocks
-      </a>
+      </Link>
+      <Link
+        className={
+          active === 'market' ? 'nav-link text-success' : 'nav-link text-white'
+        }
+        to="/market"
+      >
+        <i className="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Market
+      </Link>
     </nav>
   )
 }
