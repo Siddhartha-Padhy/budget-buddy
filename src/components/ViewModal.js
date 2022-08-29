@@ -1,22 +1,17 @@
-import { useState, useContext, useEffect } from 'react'
-import { get_expenses } from '../utility'
+import { useContext } from 'react'
+import { currency_formatter } from '../utility.js'
 import { UpdateContext } from '../pages/HomePage.js'
 
 export default function ViewModal({ id, title }) {
-  const { update, setUpdate, data } = useContext(UpdateContext)
-  useEffect(() => {
-    if (data[id] != null) {
-      for (let key of data[id].expenses) {
-        document.getElementById(
-          `expense-table-${id}`,
-        ).innerHTML += `<tr key={index}>
-          <th scope="row">${key.id}</th>
-          <td>${key.caption}</td>
-          <td>${key.amount}</td>
-        </tr>`
-      }
-    }
-  }, [data])
+  const { setUpdate, data } = useContext(UpdateContext)
+
+  //Update the expenses list when element is deleted
+  function update_data(title, id) {
+    let prev = JSON.parse(localStorage[title])
+    prev.splice(id - 1, 1)
+    localStorage[title] = JSON.stringify(prev)
+    setUpdate(true)
+  }
 
   return (
     <div
@@ -48,16 +43,30 @@ export default function ViewModal({ id, title }) {
                   <th scope="col">#</th>
                   <th scope="col">Caption</th>
                   <th scope="col">Amount</th>
+                  <th scope="col">Remove</th>
                 </tr>
               </thead>
               <tbody id={'expense-table-' + id}>
-                {/* {view_expenses(title) != null ? (
-                  view_expenses(title).map((expense, index) => {
+                {data[id] != null ? (
+                  data[id].expenses.map((key, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">{index + 1}</th>
-                        <td>{expense.caption}</td>
-                        <td>{expense.amount}</td>
+                        <th scope="row">{key.id}</th>
+                        <td>{key.caption}</td>
+                        <td>{currency_formatter.format(key.amount)}</td>
+                        <td className="text-center">
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              update_data(data[id].title, key.id)
+                            }}
+                          >
+                            <i
+                              className="fa fa-times text-white"
+                              aria-hidden="true"
+                            ></i>
+                          </button>
+                        </td>
                       </tr>
                     )
                   })
@@ -66,8 +75,9 @@ export default function ViewModal({ id, title }) {
                     <th scope="row">-</th>
                     <td>-</td>
                     <td>-</td>
+                    <td className="text-center">-</td>
                   </tr>
-                )} */}
+                )}
               </tbody>
             </table>
           </div>

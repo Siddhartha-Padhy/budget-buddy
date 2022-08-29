@@ -7,13 +7,17 @@ export const UpdateContext = createContext()
 export default function HomePage() {
   const [update, setUpdate] = useState(false)
   const [data, setData] = useState({})
-  const budgets = ['Card Bills', 'Medical Bills', 'Shopping', 'Unexpected']
+  const [budgets] = useState([
+    'Card Bills',
+    'Medical Bills',
+    'Shopping',
+    'Unexpected',
+  ])
 
   useEffect(() => {
-    console.log('Update detected.')
     setData(get_expenses(budgets))
     setUpdate(false)
-  }, [update])
+  }, [update, budgets])
 
   return (
     <UpdateContext.Provider value={{ update, setUpdate, data }}>

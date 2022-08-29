@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { add_expense } from '../utility'
 import { UpdateContext } from '../pages/HomePage.js'
 
 export default function Modal({ id, title }) {
-  const { update, setUpdate, data } = useContext(UpdateContext)
+  const { setUpdate } = useContext(UpdateContext)
   return (
     <div
       className="modal fade"
@@ -57,6 +57,8 @@ export default function Modal({ id, title }) {
               className="btn btn-primary"
               data-dismiss="modal"
               onClick={() => {
+                document.getElementById('caption' + id).textContent = ''
+                document.getElementById('amount' + id).textContent = ''
                 add_expense(title, id)
                 setUpdate(true)
               }}

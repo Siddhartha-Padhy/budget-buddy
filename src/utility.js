@@ -19,8 +19,6 @@ export function add_expense(title, id) {
 
   if (localStorage[title] != null) {
     let prev = JSON.parse(localStorage[title])
-    // prev[caption] = amount
-    // localStorage[title] = JSON.stringify(prev)
     prev = [...prev, { caption: caption, amount: amount }]
     localStorage[title] = JSON.stringify(prev)
   } else {
@@ -31,7 +29,6 @@ export function add_expense(title, id) {
 }
 
 // Return expenses array
-// TODO: if doesn't work revert to github prev commit
 export function get_expenses(budgets) {
   let expenses = []
   let budget_expenses = []

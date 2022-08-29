@@ -5,7 +5,7 @@ export default function Navbar({ active }) {
   return (
     <nav className="navbar navbar-dark bg-dark px-2">
       <span className="navbar-brand mb-0 h1 me-auto text-success">
-        Budget Buddy
+        💼 Budget Buddy
       </span>
       <Link
         className={
