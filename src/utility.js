@@ -31,16 +31,37 @@ export function add_expense(title, id) {
 }
 
 // Return expenses array
-export function view_expenses(title) {
+// TODO: if doesn't work revert to github prev commit
+export function get_expenses(budgets) {
   let expenses = []
+  let budget_expenses = []
+  let count = 1
+
+  for (let key of budgets) {
+    if (localStorage[key] != null) {
+      for (let expense of JSON.parse(localStorage[key])) {
+        expenses.push({
+          id: count,
+          caption: expense.caption,
+          amount: expense.amount,
+        })
+        count = count + 1
+      }
+      count = 1
+    }
+    budget_expenses.push({ title: key, expenses: expenses })
+    expenses = []
+  }
+
+  return budget_expenses
+}
+
+export function get_amount(title) {
+  let amount = 0
   if (localStorage[title] != null) {
     for (let expense in JSON.parse(localStorage[title])) {
-      expenses.push({
-        caption: JSON.parse(localStorage[title])[expense].caption,
-        amount: JSON.parse(localStorage[title])[expense].amount,
-      })
+      amount = amount + JSON.parse(localStorage[title])[expense].amount
     }
-    console.log(expenses)
-    return expenses
-  } else return null
+  }
+  return amount
 }

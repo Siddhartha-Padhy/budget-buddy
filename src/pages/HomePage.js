@@ -1,35 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState, createContext } from 'react'
 import Card from '../components/Card'
-// import React, { useEffect, useState } from 'react'
+import { get_amount, get_expenses } from '../utility'
+
+export const UpdateContext = createContext()
 
 export default function HomePage() {
-  // const [cardBill, setCardBill] = useState(0)
-  // const [medBill, setMedBill] = useState(0)
-  // const [shop, setShop] = useState(0)
-  // const [unexp, setUnexp] = useState(0)
+  const [update, setUpdate] = useState(false)
+  const [data, setData] = useState({})
+  const budgets = ['Card Bills', 'Medical Bills', 'Shopping', 'Unexpected']
 
-  // useEffect(() => {
-  //   setCardBill(get_stats('Card'))
-  // }, [])
+  useEffect(() => {
+    console.log('Update detected.')
+    setData(get_expenses(budgets))
+    setUpdate(false)
+  }, [update])
 
   return (
-    <div className="p-4">
-      <div className="row">
-        <div className="col-sm-6">
-          <Card title={'Card Bills'} amount={8000} limit={20000} id={0} />
+    <UpdateContext.Provider value={{ update, setUpdate, data }}>
+      <div className="p-4">
+        <div className="row">
+          <div className="col-sm-6">
+            <Card
+              title={'Card Bills'}
+              amount={get_amount('Card Bills')}
+              limit={20000}
+              id={0}
+            />
+          </div>
+          <div className="col-sm-6">
+            <Card
+              title={'Medical Bills'}
+              amount={get_amount('Medical Bills')}
+              limit={10000}
+              id={1}
+            />
+          </div>
         </div>
-        <div className="col-sm-6">
-          <Card title={'Medical Bills'} amount={5500} limit={10000} id={1} />
+        <div className="row">
+          <div className="col-sm-6">
+            <Card
+              title={'Shopping'}
+              amount={get_amount('Shopping')}
+              limit={10000}
+              id={2}
+            />
+          </div>
+          <div className="col-sm-6">
+            <Card
+              title={'Unexpected'}
+              amount={get_amount('Unexpected')}
+              limit={5000}
+              id={3}
+            />
+          </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-sm-6">
-          <Card title={'Shopping'} amount={8000} limit={10000} id={2} />
-        </div>
-        <div className="col-sm-6">
-          <Card title={'Unexpected'} amount={1200} limit={5000} id={3} />
-        </div>
-      </div>
-    </div>
+    </UpdateContext.Provider>
   )
 }

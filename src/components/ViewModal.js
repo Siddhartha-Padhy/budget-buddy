@@ -1,7 +1,23 @@
-import React from 'react'
-import { view_expenses } from '../utility'
+import { useState, useContext, useEffect } from 'react'
+import { get_expenses } from '../utility'
+import { UpdateContext } from '../pages/HomePage.js'
 
 export default function ViewModal({ id, title }) {
+  const { update, setUpdate, data } = useContext(UpdateContext)
+  useEffect(() => {
+    if (data[id] != null) {
+      for (let key of data[id].expenses) {
+        document.getElementById(
+          `expense-table-${id}`,
+        ).innerHTML += `<tr key={index}>
+          <th scope="row">${key.id}</th>
+          <td>${key.caption}</td>
+          <td>${key.amount}</td>
+        </tr>`
+      }
+    }
+  }, [data])
+
   return (
     <div
       className="modal fade"
@@ -34,8 +50,8 @@ export default function ViewModal({ id, title }) {
                   <th scope="col">Amount</th>
                 </tr>
               </thead>
-              <tbody>
-                {view_expenses(title) != null ? (
+              <tbody id={'expense-table-' + id}>
+                {/* {view_expenses(title) != null ? (
                   view_expenses(title).map((expense, index) => {
                     return (
                       <tr key={index}>
@@ -51,7 +67,7 @@ export default function ViewModal({ id, title }) {
                     <td>-</td>
                     <td>-</td>
                   </tr>
-                )}
+                )} */}
               </tbody>
             </table>
           </div>
