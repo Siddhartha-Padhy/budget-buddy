@@ -1,3 +1,9 @@
+# 🤖 Budget Buddy
+A website built with React JS to manage daily budgets and their expenses along with realtime crypto currencies price listing. Visit at: https://budgetbuddy18.netlify.app/
+
+## Preview
+![](https://github.com/Siddhartha-Padhy/budget-buddy/blob/master/public/ScreenShot.PNG)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
