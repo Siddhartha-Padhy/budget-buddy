@@ -92,7 +92,13 @@ export function add_budget() {
     prev = [...prev, { bname: bname, limit: limit }]
     localStorage['Budgets'] = JSON.stringify(prev)
   } else {
-    let store = [{ bname: bname, limit: limit }]
+    let store = [
+      { bname: 'Card Bills', limit: 20000 },
+      { bname: 'Medical Bills', limit: 10000 },
+      { bname: 'Shopping', limit: 10000 },
+      { bname: 'Unexpected', limit: 5000 },
+      { bname: bname, limit: limit },
+    ]
     store = JSON.stringify(store)
     localStorage['Budgets'] = store
   }

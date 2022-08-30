@@ -7,6 +7,9 @@ export default function ViewBudgetsModal() {
 
   //Update the expenses list when element is deleted
   function update_budgets(id) {
+    if (!localStorage['Budgets']) {
+      localStorage['Budgets'] = JSON.stringify(budgets)
+    }
     let prev = JSON.parse(localStorage['Budgets'])
     localStorage.removeItem(prev[id].bname)
     prev.splice(id, 1)
