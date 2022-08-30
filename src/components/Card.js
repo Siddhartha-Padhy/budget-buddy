@@ -1,15 +1,9 @@
 import React from 'react'
-import { currency_formatter } from '../utility'
+import { currency_formatter, get_color } from '../utility'
 import Modal from './Modal'
 import ViewModal from './ViewModal'
 
 export default function Card({ title, amount, limit, id }) {
-  function get_color(amount, limit) {
-    if (amount / limit <= 0.5) return 'bg-success'
-    if (amount / limit <= 0.75) return 'bg-warning'
-    return 'bg-danger'
-  }
-
   return (
     <>
       <div className="card my-2 border-primary shadow">
@@ -23,7 +17,7 @@ export default function Card({ title, amount, limit, id }) {
           </div>
 
           <div className="card-text">
-            <div className="progress my-1">
+            <div className="progress rounded-pill my-1">
               <div
                 className={
                   'progress-bar progress-bar-striped rounded-pill ' +

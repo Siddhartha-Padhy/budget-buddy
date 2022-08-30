@@ -12,6 +12,12 @@ export const currency_formatter_USD = new Intl.NumberFormat(undefined, {
   minimumFractionDigits: 2,
 })
 
+export function get_color(amount, limit) {
+  if (amount / limit <= 0.5) return 'bg-success'
+  if (amount / limit <= 0.75) return 'bg-warning'
+  return 'bg-danger'
+}
+
 // Add to local storage
 export function add_expense(title, id) {
   const caption = document.getElementById(`caption${id}`).value
@@ -61,4 +67,47 @@ export function get_amount(title) {
     }
   }
   return amount
+}
+
+export function get_total_amountNlimit(budgets) {
+  let amount = 0
+  let limit = 0
+  for (let budget of budgets) {
+    if (localStorage[budget.bname] != null) {
+      for (let expense in JSON.parse(localStorage[budget.bname])) {
+        amount = amount + JSON.parse(localStorage[budget.bname])[expense].amount
+      }
+    }
+    limit = limit + budget.limit
+  }
+
+  return { amount: amount, limit: limit }
+}
+
+export function add_budget() {
+  const bname = document.getElementById('bname').value
+  const limit = parseInt(document.getElementById('limit').value)
+  if (localStorage['Budgets'] != null) {
+    let prev = JSON.parse(localStorage['Budgets'])
+    prev = [...prev, { bname: bname, limit: limit }]
+    localStorage['Budgets'] = JSON.stringify(prev)
+  } else {
+    let store = [{ bname: bname, limit: limit }]
+    store = JSON.stringify(store)
+    localStorage['Budgets'] = store
+  }
+}
+
+export function get_budgets() {
+  if (localStorage['Budgets'] != null) {
+    let budget_list = JSON.parse(localStorage['Budgets'])
+    console.log(budget_list)
+    return budget_list
+  }
+  return [
+    { bname: 'Card Bills', limit: 20000 },
+    { bname: 'Medical Bills', limit: 10000 },
+    { bname: 'Shopping', limit: 10000 },
+    { bname: 'Unexpected', limit: 5000 },
+  ]
 }
