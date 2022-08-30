@@ -1,17 +1,18 @@
-// import { useContext } from 'react'
-// import { currency_formatter } from '../utility.js'
-// import { UpdateContext } from '../pages/HomePage.js'
+import { useContext } from 'react'
+import { currency_formatter } from '../utility.js'
+import { UpdateContext } from '../pages/HomePage.js'
 
 export default function ViewBudgetsModal() {
-  //   const { setUpdate, data } = useContext(UpdateContext)
+  const { setUpdate, budgets } = useContext(UpdateContext)
 
   //Update the expenses list when element is deleted
-  //   function update_data(title, id) {
-  // let prev = JSON.parse(localStorage[title])
-  // prev.splice(id - 1, 1)
-  // localStorage[title] = JSON.stringify(prev)
-  // setUpdate(true)
-  //   }
+  function update_budgets(id) {
+    let prev = JSON.parse(localStorage['Budgets'])
+    localStorage.removeItem(prev[id].bname)
+    prev.splice(id, 1)
+    localStorage['Budgets'] = JSON.stringify(prev)
+    setUpdate(true)
+  }
 
   return (
     <div
@@ -46,19 +47,20 @@ export default function ViewBudgetsModal() {
                   <th scope="col">Remove</th>
                 </tr>
               </thead>
+
               <tbody id="budgets-table">
-                {/* {data[id] != null ? (
-                  data[id].expenses.map((key, index) => {
+                {budgets != null ? (
+                  budgets.map((key, index) => {
                     return (
                       <tr key={index}>
-                        <th scope="row">{key.id}</th>
-                        <td>{key.caption}</td>
-                        <td>{currency_formatter.format(key.amount)}</td>
+                        <th scope="row">{index + 1}</th>
+                        <td>{key.bname}</td>
+                        <td>{currency_formatter.format(key.limit)}</td>
                         <td className="text-center">
                           <button
                             className="btn btn-danger"
                             onClick={() => {
-                              update_data(data[id].title, key.id)
+                              update_budgets(index)
                             }}
                           >
                             <i
@@ -77,13 +79,7 @@ export default function ViewBudgetsModal() {
                     <td>-</td>
                     <td className="text-center">-</td>
                   </tr>
-                )} */}
-                <tr>
-                  <th scope="row">-</th>
-                  <td>-</td>
-                  <td>-</td>
-                  <td className="text-center">-</td>
-                </tr>
+                )}
               </tbody>
             </table>
           </div>

@@ -101,7 +101,6 @@ export function add_budget() {
 export function get_budgets() {
   if (localStorage['Budgets'] != null) {
     let budget_list = JSON.parse(localStorage['Budgets'])
-    console.log(budget_list)
     return budget_list
   }
   return [

@@ -39,8 +39,8 @@ export default function HomePage() {
   }
 
   const initial = {
-    budgets: [],
-    data: [],
+    budgets: budgets,
+    data: data,
     totalAmountNLimit: { amount: 0, limit: 0 },
   }
 
