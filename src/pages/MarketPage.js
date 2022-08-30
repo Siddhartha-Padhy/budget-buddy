@@ -21,7 +21,7 @@ function MarketPage() {
   }, [])
 
   return (
-    <table className="table table-light stock-table">
+    <table className="table table-dark stock-table my-1 px-2">
       <thead>
         <tr className="text-primary">
           <th scope="col">#</th>
@@ -45,7 +45,7 @@ function MarketPage() {
             return (
               <tr key={stock.rank}>
                 <th scope="row">{stock.rank}</th>
-                <td>{stock.symbol}</td>
+                <td className="text-warning">{stock.symbol}</td>
                 <td>{stock.name}</td>
                 <td>
                   {stock.changePercent24Hr > 0 ? (

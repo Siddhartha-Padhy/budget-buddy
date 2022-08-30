@@ -17,12 +17,7 @@ export default function HomePage() {
     amount: 0,
     limit: 0,
   })
-  const [budgets, setBudgets] = useState([
-    { bname: 'Card Bills', limit: 20000 },
-    { bname: 'Medical Bills', limit: 10000 },
-    { bname: 'Shopping', limit: 10000 },
-    { bname: 'Unexpected', limit: 5000 },
-  ])
+  const [budgets, setBudgets] = useState(get_budgets())
 
   function reducer(state) {
     return {
